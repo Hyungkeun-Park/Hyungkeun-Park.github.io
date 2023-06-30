@@ -4,6 +4,7 @@ excerpt: "Knowledge Distillation 분야의 시작"
 
 toc: true
 toc_sticky: true
+use_math: true
 
 categories:
     - Review
@@ -14,6 +15,15 @@ tags:
     - Knowledge Distillation
 last_modified_at: 2023-06-30T01:00:00
 ---
+<br>
+<br>
+<br>
+작성중
+{: .text-center}
+<br>
+<br>
+<br>
+
 <br>
 오늘은 Deep Learning에서의 경량화 기법 중 한 종류인<br>
 **Knowledge Distillation** (지식증류)의 첫 시작인 논문에 대해<br>
