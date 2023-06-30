@@ -4,6 +4,7 @@ excerpt: "Knowledge Distillation 분야의 시작"
 
 toc: true
 toc_sticky: true
+
 use_math: true
 
 categories:
@@ -36,7 +37,7 @@ Input에 대한 정답 Label을 이용한 기존의 Supervised 학습 방법과 
 선생(Teacher) 모델의 정답 Label 이외의 정보에 대해서도<br>
 학생(Student) 모델에게 학습을 시키는 것이 목적이다<br>
 
-![image](https://github.com/Hyungkeun-Park/Hyungkeun-Park.github.io/assets/21329629/6322c5f6-8d0d-494e-809f-15b1e1099cd0)
+![image](https://github.com/Hyungkeun-Park/Hyungkeun-Park.github.io/assets/21329629/6322c5f6-8d0d-494e-809f-15b1e1099cd0){: with="70%", height="70%"}
 KD의 방법들에는 위 사진과 같이 다양한 종류들이 존재하고<br>
 오늘 다뤄볼 논문의 경우 *Distillation from one teacher - Knowledge from logits*에 해당한다<br> 
 
@@ -48,3 +49,10 @@ KD의 방법들에는 위 사진과 같이 다양한 종류들이 존재하고<b
 CNN을 통한 Image Classification task의 경우<br>
 Input → Convolution Layer → Fully-Connetect Layer → 각 클래스에 대한 Logit<br>
 최종적으로 Logit에 대한 Softmax를 통해 해당 Class에 대한 확률을 구하게 되는데<br>
+
+KD에서는 정답 라벨 이외의 정보들을 보존하기 위해 Logit을 Temperature Scaling하고<br>
+Temperature Scaling을 통해 broad해진 분포를 Student 모델의 분포와 KL-divergence를 통해 학습을 진행한다<br>
+보통의 KD 논문에서 Temperature T=4로 두고 KD를 진행하고 있다<br>
+$$
+q_{i}=\frac{exp(z_{i}/T)}{\sum_{j}{z_j/T}},\; KL(T||S)=T\log{\frac{T}{S}}
+$\$
