@@ -202,8 +202,6 @@ lsi: false
 excerpt_separator: "\n\n"
 incremental: false
 
-asset_rul: /assets  # favicon
-
 # Markdown Processing
 kramdown:
   input: GFM
