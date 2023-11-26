@@ -202,6 +202,7 @@ lsi: false
 excerpt_separator: "\n\n"
 incremental: false
 
+asset_rul: /assets  # favicon
 
 # Markdown Processing
 kramdown:
@@ -278,8 +279,11 @@ tag_archive:
 # - https://jch.penibelst.de/
 compress_html:
   clippings: all
+  #clippings: pre
+  #blanklines: true
   ignore:
     envs: development
+    #envs:
 
 
 # Defaults
