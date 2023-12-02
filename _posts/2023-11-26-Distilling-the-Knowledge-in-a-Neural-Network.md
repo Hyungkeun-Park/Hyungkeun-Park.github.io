@@ -16,8 +16,6 @@ tags:
     - Knowledge Distillation
 last_modified_at: 2023-11-26T01:00:00
 ---
-작성중
-{: .notice}
 
 <br>
 오늘은 Deep Learning에서의 경량화 기법 중 한 종류인<br>

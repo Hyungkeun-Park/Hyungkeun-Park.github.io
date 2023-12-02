@@ -2,6 +2,11 @@
 title: "Pandas 기본 정리"
 excerpt: "자꾸 까먹어서 기본 정리해두기"
 
+toc: true
+toc_sticky: true
+
+use_math: true
+
 categories:
     - Pandas
 tags:

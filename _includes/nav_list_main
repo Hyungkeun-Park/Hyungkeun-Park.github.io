@@ -21,6 +21,9 @@
                     {% if category[0] == "Review" %}
                         <li><a href="/categories/Review" class="">Review ({{category[1].size}})</a></li>
                     {% endif %}
+                    {% if category[0] == "Optimizer" %}
+                    <li><a href="/categories/Optimizer" class="">Optimizer ({{category[1].size}})</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
