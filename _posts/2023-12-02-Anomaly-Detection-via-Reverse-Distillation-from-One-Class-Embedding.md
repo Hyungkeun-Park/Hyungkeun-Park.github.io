@@ -79,7 +79,7 @@ pixel-by-pixel 검출보다 더욱 효과적인 판별 정보를 제공한다고
 학생 모델(D)는 선생 모델(E)와 동일한 구조로 순서만 뒤집힌 구조를 갖는데<br>
 이러한 구조가 비정상에 대한 response를 제거하기 용이하게 해준다고 한다<br>
 <br>
-그리고 학생 모델을 학습시키는 **Loss로는 Cosine similarity를 사용했다<br>
+그리고 학생 모델을 학습시키는 **Loss로는 Cosine similarity**    를 사용했다<br>
 <br>
 
 ## 2. One-Class Bottleneck Embedding
