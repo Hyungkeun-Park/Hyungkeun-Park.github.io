@@ -105,9 +105,20 @@ input-output embedding은 결국 동일한 사이즈(vocab., embedding)이기 �
 <br>
 <br>
 
-# Grouped Query Attention
+# [Grouped Query Attention](https://arxiv.org/abs/2305.13245)
 ---
-
+기존 Multi-query attention (MQA)은 key-value head를 한 개만 사용함으로써 decoder의 속도를 끌어올린 방법입니다<br>
+하지만, head를 한 개만 사용함에 따라 성능 또한 상당히 악화되는 부작용 또한 존재했는데<br>
+<br>
+Decoder의 크기와 속도, 성능 유지까지 모두 얻기 위해 multi-head attention (MHA)와 MQA의 중간인<br>
+**`Grouped-query attention (GQA)`**라는 방식이 제안되었었고<br>
+해당 방법을 MobileLLM에서 적용하였다고 합니다<br>
+<center><img width="600" alt="image" src="https://github.com/user-attachments/assets/0fb99f05-e613-42bf-a2ff-d59f92cba527"></center>
+<br>
+각 group의 key와 value head는 기존 모델의 head들의 weight을 mean pooling함으로써 구현합니다
+<br>
+MobileLLM 논문의 저자들은 GQA로 모델의 크기를 감소시킴과 동시에, embedding size는 증가시킴으로써<br>
+125M 모델에 대해 0.4% 성능 향상을 이뤄냈다고 합니다
 <br>
 <br>
 
