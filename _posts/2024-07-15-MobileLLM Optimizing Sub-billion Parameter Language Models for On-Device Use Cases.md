@@ -1,5 +1,5 @@
 ---
-title: "MobileLLM: Optimizing Sub-billion Parameter Language Models for On-Device Use Cases"
+title: "[Review] MobileLLM: Optimizing Sub-billion Parameter Language Models for On-Device Use Cases, ICML, 2024"
 excerpt: "Sub-billion scale LLM"
 
 toc: true
