@@ -57,19 +57,24 @@ last_modified_at: 2023-11-29T01:00:00
 KD로 학습한 모델의 입력 x에 대한 출력은$\hat{y} _{kd}=f _{KD}(x;D,T)$로 표현한다<br>
 <br>
 이 때 $CE$와 $KD$에 대한 출력들의 평균 $\hat{y}$는 normalization 상수 $Z$와 함께 다음과 같이 표현 가능하다
-$z
+
+$$
 \bar{y} _{ce}=\frac{1}{Z _{ce}}\exp(E _D[\log\hat{y} _{ce}]),\quad \bar{y} _{kd}=\frac{1}{Z _{kd}}\exp(E _{D,T}[\log\hat{y} _{kd}]) \tag{1}
-$z
+$$
+
 그리고 CE에 대한 error항을 다음과 같이 $noise+bias+variance$항으로 decompositon을 진행한다<br>
-$z
+
+$$
 \begin{align}
 error _{ce} = E _{x,D}[-y \log \hat{y} _{ce}] &= E _{x,D} [-y \log y + y \log \frac{y}{\bar{y} _{ce}} + y \log \frac{\bar{y} _{ce}}{\hat{y} _ce}] \newline
 &=E _x[-y \log y] + E_x[y \log \frac{y}{\bar{y} _{ce}}]+E_D[E_x[y \log \frac{\bar{y} _{ce}}{\hat{y} _{ce}}]] \tag{2} \newline
 &=E _x[-y \log y] + D _{KL}(y,\bar{y} _{ce}) + E _D[D _{KL}(\bar{y} _{ce},\hat{y} _{ce})] \newline
 &=intrinsic\;noise+bias+variance
 \end{align}
-$z
+$$
+
 위와 동일한 방식으로 KD에 대한 error항을 decomposition한다
-$z
+
+$$
 error _{kd} =E _x[-y \log y] + D _{KL}(y,\bar{y} _{ce}) +E _x[y \log (\frac{\bar{y} _{ce}}{\bar{y} _{kd}})] + E _{D,T}[D _{KL}(\bar{y} _{kd},\hat{y} _{kd})]
-$z
+$$

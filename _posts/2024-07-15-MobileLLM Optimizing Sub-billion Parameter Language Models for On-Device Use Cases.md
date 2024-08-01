@@ -48,12 +48,14 @@ SwiGLU는 Swish activation (Swi) + Gated Linear Units (GLU) 로<br>
 
 + ## [Swish activation](https://arxiv.org/abs/1710.05941)
 <center><img width="700" alt="image" src="https://github.com/user-attachments/assets/cd5f1b19-72ed-4896-a3c7-b4b91c5d5f43"></center>
-$z
+
+$$
 Swish(x) = x\sigma(\beta x)
-$z
-$z
+$$
+
+$$
 \left(\sigma(x)=Sigmoid=\frac{1}{1+e^{-x}}\right)
-$z
+$$
 
 Swish activation에서의 $\beta$는 상수 또는 learnable parameter로 설정할 수 있다고 합니다
 + $\beta=0$ : Scaled linear function $f(x)=\frac{x}{2}$
@@ -70,16 +72,20 @@ Convolutional network에서는 이러한 류의 문제가 발생하지 않아 fo
 
 따라서 output gate만을 갖는 모델에 대해 어떤 단어 or feature가 유용할지 선택하는 mechanism을 고안하였다<br>
 <br>
-$z
-▽\[tanh(X)⊗\sigma(X)\]=tanh^\prime(X)▽X⊗\sigma(X)+\sigma^\prime(X)▽X⊗tanh(X)
-$z
+
+$$
+▽[tanh(X)⊗\sigma(X)]=tanh^\prime(X)▽X⊗\sigma(X)+\sigma^\prime(X)▽X⊗tanh(X)
+$$
+
 위 수식은 기존의 LSTM-style의 gating 방식에 대한 미분 식으로<br>
 $tanh^\prime(X),\ \sigma^\prime(X)$ 항에 의해 layer를 쌓음에 따라 gradient vanishing 현상이 발생하였는데,<br>
 이와 반대로 gated linear unit의 경우, 다음의 수식처럼 $\sigma(X)$가 곱해지는 식을 가져<br>
 일종의 skip connection의 형식을 띄고 있음 알 수 있습니다
-$z
+
+$$
 ▽[X⊗\sigma(X)]=▽X⊗\sigma(X)+X\sigma^\prime(X)▽X
-$z
+$$
+
 <br>
 <br>
 

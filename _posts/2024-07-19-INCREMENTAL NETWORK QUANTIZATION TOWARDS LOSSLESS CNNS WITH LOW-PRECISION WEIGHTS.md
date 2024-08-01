@@ -27,30 +27,37 @@ last_modified_at: 2024-07-19T01:00:00
 
 # Weight Quantization
 ---
-$z
+
+$$
 P_l= \left( ±2^{n_1},\cdots,±2^{n_2} ,0 \right)
-$z
+$$
+
 $P_l$의 값들로 model weight을 quantize하려고 할 때, $n_1$은 다음과 같이 설정한다고 합니다
-$z
+
+$$
 n_1 = floor(log_2(4s/3))
-$z
-$z
+$$
+
+$$
 s=max(abs(W_l))
-$z
+$$
+
 위 식의 경우, $l-th$ layer에서의 max weight value를 가장 가까운 정수 값으로 quantize하기 위한 식으로 보여집니다<br>
-$z
+
+$$
 \begin{align}
 Ex)\quad max(W_l)&=3.3 \newline
 n_1=floor(log_2(4 \times 3.3/3))&=2 \newline
 3.3\rightarrow 2^2&=4
 \end{align}
-$z
+$$
 
 그리고 $n_1$의 값이 결정되고 나면 $n_2$의 값은 다음과 같이 정의된다고 합니다
 
-$z
+$$
 n_2 = n_1+1-2^{b-1}/2
-$z
+$$
+
 어떻게 위와 같은 식이 나오게 되었는가 고민을 좀 많이 해보았는데<br>
 제가 해석하기로는 다음과 같습니다<br>
 
@@ -61,13 +68,15 @@ $P_l=\left(±2^{-1},±2^{-2},0\right)$이 됨을 알 수 있습니다<br>
 $n_2$의 값이 위와 같이 설정된 것으로 판단하였습니다<br>
 
 이렇게 구성된 $P_l$을 이용하여 model weight $W_l(i,j)$를 다음과 같이 quantize 한다고 합니다
-$z
+
+$$
 \hat{W}_l(i,j)=
 \begin{cases}
 {\beta sgn(W_l(i,j))} & if\;(\alpha+\beta)/2 ≤ abs(W_l(i,j)) ＜3\beta/2 \newline
 {0} & otherwise
 \end{cases}
-$z
+$$
+
 <br>
 <br>
 
@@ -96,11 +105,13 @@ pruning에서 영감을 받은, larger absolute value를 가진 weight을 quanti
 re-train group에 대해서만 training을 진행하기 위해 추가적인 matrix인 $T_l$을 추가로 도입하여<br>
 back propagation시 해당 group에만 gradient가 전파되도록 masking하는 역할을 하게됩니다<br>
 
-$z
+$$
 \underset{W_l}{min}E(W_l)=L(W_l)+\lambda R(W_l)
-$z
-$z
+$$
+
+$$
 s.t. W_l(i,j)\in P_l,\; if\; T_l(i,j)=0,\; 1\leq l\leq L
-$z
+$$
+
 최종적으로 위와 같은 object function을 만족하도록 학습이 진행되게 됩니다
 <center><img width="550" alt="image" src="https://github.com/user-attachments/assets/d5c4cd55-066d-41e4-b0cd-c1884cbbd1b7"></center>

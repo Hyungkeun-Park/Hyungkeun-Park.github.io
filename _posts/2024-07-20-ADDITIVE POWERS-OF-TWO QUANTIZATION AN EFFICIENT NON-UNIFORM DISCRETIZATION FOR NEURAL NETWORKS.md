@@ -18,7 +18,8 @@ last_modified_at: 2024-07-20T01:00:00
 <!--bundle exec jekyll serve : 임시 확인-->
 
 **[ADDITIVE POWERS-OF-TWO QUANTIZATION: AN EFFICIENT NON-UNIFORM DISCRETIZATION FOR NEURAL NETWORKS](https://arxiv.org/abs/1909.13144)**<br>
-**`Logarithmic-scale quantization`**을 이용한 <br>
+**`Logarithmic-scale quantization`**을 이용한 quantization 논문으로<br>
+기존의 Power-of-Two (PoT) quantization의 문제점을 sum of PoT로 변경함으로써 문제점을 해결하고자 한 논문입니다
 
 <br>
 <br>
@@ -39,13 +40,16 @@ PoT의 경우, quantization bit width가 증가할 경우, 분포 전반에 대�
 # Additive Power-of-Two Quantization
 ---
 기존의 PoT의 경우 다음과 같은 방식으로 quantization을 진행하였습니다
-$z
+
+$$
 Q^P(\alpha,b)=\alpha\times｛\ 0,±2^{-2^{b-1}+1},±2^{-2^{b-1}+2},\cdots,±2^{-1},±1\ ｝
-$z
+$$
+
 저자들이 제안하는 방식인 Additive PoT (APoT)는 다음과 같습니다
-$z
+
+$$
 Q^a(\alpha,kn)=\gamma\times\ ｛\sum _{i=0}^{n-1}p_i\ ｝\quad where\; p_i\in｛\ 0,\frac{1}{2^{i}},\frac{1}{2^{i+n}},\cdots,\frac{1}{2^{i+(2^k-2)n}}\ ｝
-$z
+$$
 
 식으로 봤을때에는 한 번에 이해가 잘 되지 않을수도 있습니다<br>
 
@@ -64,9 +68,11 @@ b는 각각의 power term이 가질 수 있는 case는 몇개인지 (예시에�
 
 논문의 저자들은 실험에서 k=2를 사용하여 quantization을 진행하였는데<br>
 k=2를 사용할 경우, 2n-bit의 quantization밖에 불가능해 2n+1 bit에 대한 일반화를 위해 n+1 PoT term을 추가합니다<br>
-$z
+
+$$
 Q^a(\alpha,2n+1)=\gamma\times\ ｛\sum _{i=0}^{n-1}p_i+\tilde{p}\ ｝\quad where\; p_i\in｛\ 0,\frac{1}{2^{i}},\frac{1}{2^{i+n}},\frac{1}{2^{i+2^n+1}}\ ｝,\ \tilde{p}\in｛\ 0,\frac{1}{2^{i+2n}}\ ｝
-$z
+$$
+
 <br>
 <br>
 
@@ -81,21 +87,25 @@ STE에서는 quantization된 weight에 대한 threshold로의 gradient 계산에
 clipping된 weight에 대한 gradient만을 학습하도록 하였습니다<br>
 
 더욱 정교화된 학습을 위해, 저자들은 Reparameterized Clipping Function (RCF)를 다음과 같이 제안했습니다<br>
-$z
+
+$$
 \hat{W}=\alpha\prod _{Q(1,b)}\lfloor\frac{W}{\alpha},1\rceil
-$z
+$$
+
 <br>
 우선 Weight을 $\alpha$로 나누어 ±1의 범위에서 clipping을 진행한 후<br>
 해당 Weight을 Quantization한 뒤, 다시 $\alpha$를 곱하는 방식을 의미합니다<br>
 
 위와 같은 방식으로 clipping을 진행할 경우 STE에 대한 $\alpha$로의 gradient는 다음과 같아집니다
-$z
+
+$$
 \frac{\partial\hat{W}}{\partial\alpha}=
 \begin{cases}
 sign(W) & if\; |W|>\alpha \newline
 \prod_{Q(1,b)}\frac{W}{\alpha}-\frac{W}{\alpha} & if\; |W|\leq\alpha
 \end{cases}
-$z
+$$
+
 <br>
 결과적으로, $\alpha$ 값에 대한 gradient가 clipping 범위 안밖에 있는 모든 weight에 대해 생성되기 때문에<br>
 더욱 정교한 gradient를 얻을 수 있다는 장점이 생기게 됩니다

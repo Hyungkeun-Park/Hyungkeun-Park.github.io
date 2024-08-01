@@ -13,7 +13,7 @@ tags:
     - 경량화
     - Knowledge Distillation
     - Quantization
-last_modified_at: 2024-07-15T01:00:00
+last_modified_at: 2024-07-20T01:00:00
 ---
 
 <!--bundle exec jekyll serve : 임시 확인-->

@@ -32,12 +32,14 @@ Convolution layer와 Fully-connected layer 모두 matrix dot product 연산을 �
 
 # Method 1.
 ---
-$z
+
+$$
 \begin{align}
 w^Tx &\cong \sum_{i=1}^n w_i\times2^{\tilde{x}_i} \newline
 &= \sum_i^nBitshift ( w_i, \tilde{x}_i )
 \end{align}
-$z
+$$
+
 $\tilde{x}_i=Quantize(log_2(x_i))$ 라고 정의할 때<br>
 기존 Conv. & FC layer에서의 dot product를 $\tilde{x}_i$만큼 shift한 $w_i$의 합 으로 표현이 가능하다는 것을<br>
 위 식을 통해 보여주고 있습니다 $\left(Bitshift(a,b)=a>>b\right)$<br>
@@ -53,20 +55,22 @@ $\tilde{x}_i=Quantize(log_2(x_i))$ 라고 정의할 때<br>
 ---
 그렇다면 동일하게 weight에도 quantization을 적용하게 될 경우<br>
 지수간 곱셈이 더하기 연산으로 바뀌게 되고, 결국 1이라는 숫자에 대한 bit shift로 변환이 됩니다<br>
-$z
+
+$$
 \begin{align}
 w^Tx &\cong \sum_{i=1}^n 2^{Quantize(log_2(w_i))+Quantize(log_2(x_i))} \newline
 &= \sum_ {i=1}^n Bitshift ( 1, \tilde{w}_i+\tilde{x}_i )
 \end{align}
-$z
+$$
 
 # Accumulation in log domain
 ---
 Conv. & FC layer에서의 각 원소에 대한 dot product가 bit shift로 변환이 될 수 있음을 보였으니<br>
 모든 원소들에 대한 합은 어떻게 변환을 할 수 있는지에 대해 저자들은 다음과 같이 일반화 하였습니다<br>
-$z
+
+$$
 \tilde{s}_n \cong max(\tilde{s} _{n-1},\tilde{p}_n)+Bitshift(1,-|\lfloor \tilde{s} _{n-1}\rfloor-\tilde{p}_n|)
-$z
+$$
 
 # Experiment
 실험에서 재미있던 점 몇 가지를 보자면

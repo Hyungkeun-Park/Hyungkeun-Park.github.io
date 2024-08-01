@@ -36,15 +36,19 @@ Neural Network Inference](https://arxiv.org/abs/2103.13630)**<br>
 실수축 r의 값은 Q축에 표시된 점들로 quantization 된다
 </center>
 <br>
-$z
+
+$$
 Quantization\ Q(r) = Int(r/S)-Z
-$z
-$z
+$$
+
+$$
 Dequantization\ \tilde{r} = S(Q(r)+Z)
-$z
-$z
+$$
+
+$$
 r:real\ value,\ \tilde{r}:recovered\ real\ value,\ S:scale,\ Z:zero\ point
-$z
+$$
+
 <br>
 <br>
 

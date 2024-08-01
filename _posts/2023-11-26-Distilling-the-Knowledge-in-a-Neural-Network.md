@@ -45,9 +45,10 @@ Input → Convolution Layer → Fully-Connetect Layer → 각 클래스에 대�
 KD에서는 정답 라벨 이외의 정보들을 보존하기 위해 Logit을 Temperature Scaling하고<br>
 Temperature Scaling을 통해 broad해진 분포를 Student 모델의 분포와 KL-divergence를 통해 학습을 진행한다<br>
 보통의 KD 논문에서 Temperature T=4로 두고 KD를 진행하고 있다<br>
-$z
+
+$$
 q_{i}=\frac{exp(z_{i}/T)}{\sum_{j}{z_j/T}},\; KL(T||S)=\sum T\log{\frac{T}{S}}
-$z
+$$
 
 $q_{i}$는 CNN을 통해 얻어진 Logit을<br>
 각 클래스에 대한 확률로 변환해주는 `Softmax`를 수식으로 보여주고<br>
