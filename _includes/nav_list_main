@@ -45,7 +45,9 @@
                     {% if category[0] == "BJ" %}
                         <li><a href="/categories/BJ" class="">백준 ({{category[1].size}})</a></li>
                     {% endif %}
-
+                    {% if category[0] == "NLP" %}
+                        <li><a href="/categories/NLP" class="">NLP ({{category[1].size}})</a></li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
